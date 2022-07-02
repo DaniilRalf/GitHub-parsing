@@ -1,0 +1,21 @@
+<h1 class="title" *ngIf="data.person">Followers for {{data.person}}</h1>
+<h1 class="title" *ngIf="!data.person">Enter user GitHub</h1>
+
+<div class="search">
+  <input [(ngModel)]="inputPerson">
+  <button (click)="searchFollowers()">Search</button>
+</div>
+
+<div *ngIf="data.followers.length === 0 && data.person" class="followers-list">Followers not found please enter another user</div>
+<div *ngIf="data.followers" class="followers-list">
+  <div class="follower" *ngFor="let i of data.followers">
+    <div class="img-block">
+      <img class="img" src="{{i.avatar_url}}" alt="">
+    </div>
+    <div class="description">
+      <div class="heading">{{i.login}}</div>
+      <a class="url" target="_blank" href="{{i.html_url}}">{{i.html_url}}</a>
+    </div>
+  </div>
+</div>
+
